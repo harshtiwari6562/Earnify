@@ -15,7 +15,7 @@ const LandingPage = () => {
             <div className="flex items-center justify-between w-full md:w-auto">
               <a href="#" className="flex items-center">
                 <Code className="h-8 w-8 text-indigo-500" />
-                <span className="ml-2 font-bold text-xl">Alaska</span>
+                <span className="ml-2 font-bold text-xl">Earnify</span>
               </a>
             </div>
           </div>

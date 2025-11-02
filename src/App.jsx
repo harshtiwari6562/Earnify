@@ -7,6 +7,8 @@ import CreateRoom from './pages/CreateRoomPage';
 import JoinRoom from './pages/JoinRoomPage';
 import Login from './pages/LoginPage';
 import TopicSolvePage from './pages/TopicSolvePage';
+import InterviewPage from './pages/InterviewPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -20,6 +22,15 @@ function App() {
         <Route path="/create-room" element={<CreateRoom />} />
         <Route path="/join-room" element={<JoinRoom />} />
         <Route path="/topics/:topicName/solve" element={<TopicSolvePage />} />
+        <Route path="/interview" element={<InterviewPage />} />
+        <Route 
+          path="/interview" 
+          element={
+            <ProtectedRoute>
+              <InterviewPage />
+            </ProtectedRoute>
+          } 
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     

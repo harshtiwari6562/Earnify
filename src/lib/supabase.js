@@ -4,7 +4,6 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Validate URL and key before initialization
 if (!supabaseUrl || !supabaseUrl.startsWith('https://')) {
   throw new Error('Invalid or missing VITE_SUPABASE_URL. Please ensure it starts with https:// and is properly set in your environment variables.');
 }
@@ -144,4 +143,36 @@ export const getUserSubmissions = async (userId) => {
   
   if (error) throw error;
   return data;
+};
+
+// Interview monitoring functions
+export const logInterviewEvent = async (eventData) => {
+  const { data, error } = await supabase
+    .from('interview_logs')
+    .insert([{
+      user_id: eventData.userId,
+      event_type: eventData.eventType,
+      event_data: eventData.eventData || {},
+      timestamp: new Date().toISOString()
+    }])
+    .select();
+  
+  if (error) {
+    console.error('Error logging interview event:', error);
+    throw error;
+  }
+  return data[0];
+};
+
+export const logCheater = async (userId, reason) => {
+  try {
+    await logInterviewEvent({
+      userId,
+      eventType: 'cheater_blocked',
+      eventData: { reason }
+    });
+  } catch (error) {
+    console.error('Error logging cheater:', error);
+    throw error;
+  }
 };

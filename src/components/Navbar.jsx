@@ -56,6 +56,7 @@ const Navbar = () => {
               <Link to="/mocktest" className="text-gray-300 hover:text-white px-3 py-2 rounded-md font-medium">AI Mock Test</Link>
               <Link to="/create-room" className="text-gray-300 hover:text-white px-3 py-2 rounded-md font-medium">Create Room</Link>
               <Link to="/join-room" className="text-gray-300 hover:text-white px-3 py-2 rounded-md font-medium">Join Room</Link>
+              <Link to="/interview" className="text-gray-300 hover:text-white px-3 py-2 rounded-md font-medium">Interview</Link>
             </div>
           </div>
 
